@@ -1,0 +1,14 @@
+{
+    "battery_settings": {
+        "UNPLUGGED": {
+            "LOW_ENERGY":true, 
+            "MEDIUM_ENERGY":true,
+            "MAX_ENERGY":false
+        },
+        "PLUGGED": {
+            "LOW_ENERGY":true, 
+            "MEDIUM_ENERGY":true,
+            "MAX_ENERGY":true
+        }
+    }
+}

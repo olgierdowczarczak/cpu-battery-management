@@ -1,0 +1,19 @@
+{
+    "energy_settings": {
+        "LOW_ENERGY": {
+            "BATTERY_USAGE":20,
+            "SCHEME_NAME":"SCHEME_MAX",
+            "MAX_CPU":25.0
+        },
+        "MEDIUM_ENERGY": {
+            "BATTERY_USAGE":50,
+            "SCHEME_NAME":"SCHEME_BALANCED",
+            "MAX_CPU":50.0
+        },
+        "MAX_ENERGY": {
+            "BATTERY_USAGE":100,
+            "SCHEME_NAME":"SCHEME_MIN",
+            "MAX_CPU":75.0
+        }
+    }
+}

@@ -2,7 +2,7 @@ from settings import EnergySettings, BatterySettings
 
 def getEnergySetting() -> None:
     """
-    Determine and set the appropriate energy setting based on battery level and plugged status
+    Description: Determine and set the appropriate energy setting based on battery level and plugged status
 
     return None
     """
@@ -35,8 +35,9 @@ def getEnergySetting() -> None:
 
 def managementBattery(battery) -> None:
     """
-    Manage battery
+    Description: Manage battery
 
+    param:
     battery = psutil object
 
     return None

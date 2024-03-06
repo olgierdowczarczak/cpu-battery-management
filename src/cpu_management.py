@@ -3,8 +3,9 @@ from psutil import process_iter, cpu_percent, Process, AccessDenied
 
 def managementCPU(cpu_usage: float, active_pid: int) -> None:
     """
-    Manage CPU usage by terminating processes that exceed the maximum CPU threshold set in Energy Settings
+    Description: Manage CPU usage by terminating processes that exceed the maximum CPU threshold set in Energy Settings
 
+    params:
     cpu_usage = float, Current CPU usage in %
     active_pid = int, PID of active process
 

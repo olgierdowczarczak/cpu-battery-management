@@ -3,14 +3,15 @@ from subprocess import CalledProcessError, run as subprocessrun
 
 class Settings():
     @classmethod
-    def getSettings(cls, file_path: str, key: str, *args) -> None:
+    def getSettings(cls, file_path: str, key: str) -> None:
         """
+        Description:
         load settings from a JSON file,
         initialize objects based on loaded data
         
+        params:
         file_path = string, path to JSON file
         key = string, key in JSON object
-        *args = string, key in JSON object
 
         return None
         """
@@ -23,7 +24,6 @@ class Settings():
             print(f"ERROR 1: '{path_error}'")
         except Exception as error: # 
             print(f"ERROR 2: '{error}'") # no expected error
-        return None
 
 
 class EnergySettings(Settings):
@@ -32,8 +32,9 @@ class EnergySettings(Settings):
     
     def __init__(self, energy_setting_name: str, energy_battery_usage: int, energy_scheme_name: str, energy_max_cpu: float) -> None:
         """
-        Initialize EnergySettings object
+        Description: Initialize EnergySettings object
 
+        params:
         energy_setting_name = string, setting name
         energy_battery_usage = int, battery usage in setting
         energy_scheme_name = string, power scheme name
@@ -50,14 +51,15 @@ class EnergySettings(Settings):
     @classmethod
     def setEnergySetting(cls, obj: object) -> None:
         """ 
-        Changing power plan
+        Description: Changing power plan
 
+        params:
         obj = class object 
 
         return None 
         """
         if cls.energy_active_object == obj:
-            return None
+            return
         command: str = f"powercfg /SETACTIVE {obj.energy_scheme_name}"
         try:
             subprocessrun(command, shell=True, check=True) # changing plan schema
@@ -65,7 +67,6 @@ class EnergySettings(Settings):
             cls.energy_active_object = obj # active obj
         except CalledProcessError:
             print(f"ERROR 3: '{CalledProcessError}'!") # return != 0
-        return None
 
 
 class BatterySettings(Settings):
@@ -75,8 +76,9 @@ class BatterySettings(Settings):
     
     def __init__(self, battery_energy_status: str, low_energy: bool, medium_enegry: bool, max_energry: bool) -> None:
         """
-        Initialize BatterySettings object
+        Description: Initialize BatterySettings object
 
+        params:
         battery_energy_status = string
         low_energy = bool
         medium_enegry = bool
@@ -90,10 +92,8 @@ class BatterySettings(Settings):
 
 def getSettings() -> None:
     """
-    load settings from JSON file
-
-    return None
+    Description: load settings from JSON file
+    return: None
     """
-    EnergySettings.getSettings("json/energy_settings.json", "energy_settings", "BATTERY_USAGE", "SCHEME_NAME", "MAX_CPU")
-    BatterySettings.getSettings("json/battery_settings.json", "battery_settings", "LOW_ENERGY", "MEDIUM_ENERGY", "MAX_ENERGY")
-    return None
+    EnergySettings.getSettings("json/energy_settings.json", "energy_settings")
+    BatterySettings.getSettings("json/battery_settings.json", "battery_settings")

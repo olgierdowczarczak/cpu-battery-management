@@ -13,7 +13,7 @@ def managementCPU(cpu_usage: float, active_pid: int) -> None:
     """
     # check if active energy setting is defined
     if EnergySettings.energy_active_object is None:
-        return None
+        return
 
     # iterate all running processes
     all_processes = process_iter()
@@ -33,4 +33,3 @@ def managementCPU(cpu_usage: float, active_pid: int) -> None:
             except AccessDenied:
                 # process can not be terminated
                 continue
-    return None

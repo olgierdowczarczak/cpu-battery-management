@@ -24,6 +24,6 @@ def main() -> None:
 if __name__ == "__main__":
     # load settings
     getSettings()
-    
+
     # call function
     main()

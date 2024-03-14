@@ -10,18 +10,24 @@ def getEnergySetting() -> None:
     if not 1 <= BatterySettings.battery_usage <= 100:
         print(f"BATTERY LEVEL EXCEEDED LIMIT ('{BatterySettings.battery_usage}'%)")
         return None
-        
-    # get battery settings depends on battery plugged status
-    battery:BatterySettings = BatterySettings.battery_settings[BatterySettings.is_battery_plugged]
     
+    battery: BatterySettings = None
+    
+    # check if is_battery_plugged is not none
+    if BatterySettings.is_battery_plugged is not None:
+        battery = BatterySettings.battery_settings[BatterySettings.is_battery_plugged]
+    else:
+        print("Battery plugged status is None!")
+        return None
+        
     # determine length of energy list
-    new_list_length:int = -1
+    new_list_length: int = -1
     for index, setting in enumerate(EnergySettings.energy_settings):
         if battery.battery_energy_list[index]:
             new_list_length += 1
     
     # search for index from list which is setting index from EnergySettings.energy_settings
-    list_index:int = -1
+    list_index: int = -1
     for index in range(new_list_length + 1):
         if BatterySettings.battery_usage >= EnergySettings.energy_settings[index].energy_battery_usage:
             list_index += 1
